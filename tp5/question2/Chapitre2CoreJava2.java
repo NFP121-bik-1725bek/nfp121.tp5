@@ -1,23 +1,19 @@
 package question2;
 
-import java.util.List;
-import java.util.Map;
-// à  compléter
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Chapitre2CoreJava2 {
-
     /**
      * Obtention d'une liste de mots a  partir de la constante CHAPITRE2.
      * 
      **/
     public static List<String> listeDesMots() {
-        List<String> liste = null; // à  compléter
-
-        StringTokenizer st = new StringTokenizer(Chapitre2CoreJava2.CHAPITRE2,
-                "[](){};, :.\n\"");
-        // à  compléter
-
+        List<String> liste = new LinkedList<String>();
+        StringTokenizer st = new StringTokenizer(Chapitre2CoreJava2.CHAPITRE2, "[](){};, :.\n\"");
+        Iterator i = st.asIterator();
+        while (i.hasNext()) {
+            liste.add((String) i.next());
+        }
         return liste;
     }
 
@@ -28,9 +24,16 @@ public class Chapitre2CoreJava2 {
      * @param liste la liste des mots
      */
     public static Map<String, Integer> occurrencesDesMots(List<String> liste) {
-        Map<String, Integer> table = null; // à  compléter
-        // à  compléter
-        // à  compléter
+        Map<String, Integer> table = new HashMap<String, Integer>();
+        Iterator<String> i = liste.iterator();
+        while (i.hasNext()) {
+            String iNext = i.next();
+            if (table.containsKey(iNext)) {
+                table.replace(iNext, table.get(iNext) + 1);
+            } else {
+                table.put(iNext, 1);
+            }
+        }
         return table;
     }
 

@@ -63,8 +63,10 @@ public class JPanelListe extends JPanel implements ActionListener, ItemListener 
         add(texte, "Center");
 
         boutonRechercher.addActionListener(this);
-        // à compléter;
-
+        boutonRetirer.addActionListener(this);
+        ordreCroissant.addItemListener(this);
+        ordreDecroissant.addItemListener(this);
+        boutonOccurrences.addActionListener(this);
     }
 
     /** ne pas modifier les affichages, les classes de tests en ont besoin ... */
@@ -76,8 +78,7 @@ public class JPanelListe extends JPanel implements ActionListener, ItemListener 
                 Integer occur = occurrences.get(saisie.getText());
                 afficheur.setText("résultat de la recherche de : "+ saisie.getText() + " -->  " + res);
             } else if (ae.getSource() == boutonRetirer) {
-                res = retirerDeLaListeTousLesElementsCommencantPar(saisie
-                    .getText());
+                res = retirerDeLaListeTousLesElementsCommencantPar(saisie.getText());
                 afficheur.setText("résultat du retrait de tous les éléments commençant par -->  "+ saisie.getText() + " : " + res);
             } else if (ae.getSource() == boutonOccurrences) {
                 Integer occur = occurrences.get(saisie.getText());
@@ -87,7 +88,6 @@ public class JPanelListe extends JPanel implements ActionListener, ItemListener 
                     afficheur.setText(" -->  ??? ");
             }
             texte.setText(liste.toString());
-
         } catch (Exception e) {
             afficheur.setText(e.toString());
         }
@@ -95,19 +95,27 @@ public class JPanelListe extends JPanel implements ActionListener, ItemListener 
 
     public void itemStateChanged(ItemEvent ie) {
         if (ie.getSource() == ordreCroissant)
-            ;// à compléter
+            Collections.sort(liste);
         else if (ie.getSource() == ordreDecroissant)
-            ;// à compléter
-
+            Collections.sort(liste, new Comparator<String>() {
+                public int compare(String a, String b) {
+                    return b.compareTo(a);
+                }
+            });
         texte.setText(liste.toString());
     }
 
     private boolean retirerDeLaListeTousLesElementsCommencantPar(String prefixe) {
         boolean resultat = false;
-        // à compléter
-        // à compléter
-        // à compléter
+        Iterator<String> i = liste.iterator();
+        while (i.hasNext()) {
+            String iNext = i.next();
+            if (iNext.startsWith(prefixe)) {
+                occurrences.replace(iNext, 0);
+                i.remove();
+                resultat = true;
+            }
+        }
         return resultat;
     }
-
 }

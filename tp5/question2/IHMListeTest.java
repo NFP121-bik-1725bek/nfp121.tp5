@@ -44,7 +44,7 @@ public class IHMListeTest extends junit.framework.TestCase{
             Component[] components = panel.getComponents();
             assertEquals("IHM modifiée !!!", components.length, 1);
 
-            // 		// la bonne IHM
+            //         // la bonne IHM
             assertTrue(components[0] instanceof JPanel);
             Component[] subComponents = ((JPanel)components[0]).getComponents();
 
@@ -95,7 +95,7 @@ public class IHMListeTest extends junit.framework.TestCase{
             Component[] components = panel.getComponents();
             assertEquals(components.length, 1);
 
-            // 		// la bonne IHM
+            //         // la bonne IHM
             assertTrue(components[0] instanceof JPanel);
             Component[] subComponents = ((JPanel)components[0]).getComponents();
 
@@ -141,15 +141,13 @@ public class IHMListeTest extends junit.framework.TestCase{
         }
     }
 
-   
-
     public void test_IHMListe_retirer() {
         try{
             Container panel = f.getContentPane();
             Component[] components = panel.getComponents();
             assertEquals(components.length, 1);
 
-            // 		// la bonne IHM
+            //         // la bonne IHM
             assertTrue(components[0] instanceof JPanel);
             Component[] subComponents = ((JPanel)components[0]).getComponents();
 
@@ -204,7 +202,7 @@ public class IHMListeTest extends junit.framework.TestCase{
             Component[] components = panel.getComponents();
             assertEquals(components.length, 1);
 
-            // 		// la bonne IHM
+            //         // la bonne IHM
             assertTrue(components[0] instanceof JPanel);
             Component[] subComponents = ((JPanel)components[0]).getComponents();
 
@@ -225,7 +223,7 @@ public class IHMListeTest extends junit.framework.TestCase{
             assertTrue(boutons[3] instanceof Checkbox);// croissant
             assertTrue(boutons[4] instanceof Checkbox);// decroissant
             assertTrue(boutons[5] instanceof JButton);// occurrence
-            JButton occurrence = ((JButton)boutons[5]);	  
+            JButton occurrence = ((JButton)boutons[5]);      
 
             JTextField saisie = (JTextField)subSubComponents[1];
             saisie.setText("lin");
@@ -252,7 +250,7 @@ public class IHMListeTest extends junit.framework.TestCase{
             assertTrue(res.getText().endsWith("false"));
 
             saisie.setText("linked");
-            occurrence.doClick();	 
+            occurrence.doClick();     
             robot.delay(3000);
 
             res = (JLabel)subSubComponents[0];
@@ -272,7 +270,6 @@ public class IHMListeTest extends junit.framework.TestCase{
         }
     }
 
-  
     // extrait de http://www.hazirkod.com/hazirkodv.asp?KID=1425
     public static void typeLine(String s, Robot robot, boolean enter) throws Exception{
         char[] array=s.toCharArray();
@@ -329,7 +326,5 @@ public class IHMListeTest extends junit.framework.TestCase{
         robot.delay(30);
         robot.mouseRelease(InputEvent.BUTTON1_MASK);
         robot.delay(30);
-    }//end mouseMoveAndClickClick
-
-   
+    }//end mouseMoveAndClickClick  
 }
